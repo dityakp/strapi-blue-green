@@ -149,7 +149,7 @@ jobs:
         if: github.event.inputs.action == 'destroy'
         run: |
           terraform destroy -auto-approve \
-            -var="docker_image=${{ steps.ecr-image.outputs.image_uri }}" \
+            -var="image_uri=${{ steps.ecr-image.outputs.image_uri }}" \
             -var="db_password=${{ secrets.DB_PASSWORD }}" \
             -var="app_keys=${{ secrets.APP_KEYS }}" \
             -var="api_token_salt=${{ secrets.API_TOKEN_SALT }}" \

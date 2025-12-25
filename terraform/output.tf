@@ -28,5 +28,5 @@ output "ecs_service_info" {
 
 output "ecs_task_definition_arn" {
   description = "The ARN of the ECS Task Definition"
-  value       = aws_ecs_task_definition.strapi_task.arn
+  value       = aws_ecs_task_definition.strapi.arn
 }

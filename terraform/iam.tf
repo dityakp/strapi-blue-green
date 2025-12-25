@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_task_execution_role" {
-  name = "ecsTaskExecutionRole"
+  name = "aditya-strapi-ecsTaskExecutionRole"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -19,7 +19,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy" {
 }
 
 resource "aws_iam_role" "code_deploy_role" {
-  name = "codedeploy-ecs-role"
+  name = "aditya-strapi-codedeploy-ecs-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

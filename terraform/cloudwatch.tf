@@ -20,8 +20,8 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cpu_high" {
 
 
   dimensions = {
-    ClusterName = aws_ecs_cluster.strapi_cluster.name
-    ServiceName = aws_ecs_service.strapi_service.name
+    ClusterName = aws_ecs_cluster.strapi.name
+    ServiceName = aws_ecs_service.strapi.name
   }
 
   tags = {
@@ -43,8 +43,8 @@ resource "aws_cloudwatch_metric_alarm" "ecs_memory_high" {
 
 
   dimensions = {
-    ClusterName = aws_ecs_cluster.strapi_cluster.name
-    ServiceName = aws_ecs_service.strapi_service.name
+    ClusterName = aws_ecs_cluster.strapi.name
+    ServiceName = aws_ecs_service.strapi.name
   }
 
   tags = {
@@ -67,8 +67,8 @@ resource "aws_cloudwatch_metric_alarm" "ecs_task_count_low" {
   treat_missing_data = "breaching"
 
   dimensions = {
-    ClusterName = aws_ecs_cluster.strapi_cluster.name
-    ServiceName = aws_ecs_service.strapi_service.name
+    ClusterName = aws_ecs_cluster.strapi.name
+    ServiceName = aws_ecs_service.strapi.name
   }
 
   tags = {
@@ -76,4 +76,4 @@ resource "aws_cloudwatch_metric_alarm" "ecs_task_count_low" {
 
   }
 }
- 
+

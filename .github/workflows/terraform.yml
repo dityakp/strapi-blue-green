@@ -32,8 +32,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_CI_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_CI_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
@@ -62,7 +62,7 @@ jobs:
         id: plan
         run: |
           terraform plan \
-            -var="docker_image=${{ steps.ecr-image.outputs.image_uri }}" \
+            -var="image_uri=${{ steps.ecr-image.outputs.image_uri }}" \
             -var="db_password=${{ secrets.DB_PASSWORD }}" \
             -var="app_keys=${{ secrets.APP_KEYS }}" \
             -var="api_token_salt=${{ secrets.API_TOKEN_SALT }}" \
@@ -82,8 +82,8 @@ jobs:
   
             cat > deploy.json <<EOF
             {
-              "applicationName": "aadith-strapi-codedeploy-app",
-              "deploymentGroupName": "aadith-strapi-ecs-dg",
+              "applicationName": "aditya-strapi-codedeploy-app",
+              "deploymentGroupName": "aditya-strapi-ecs-dg",
               "revision": {
                 "revisionType": "AppSpecContent",
                 "appSpecContent": {
@@ -106,8 +106,8 @@ jobs:
           
           # Get the latest deployment ID
           DEPLOYMENT_ID=$(aws deploy list-deployments \
-            --application-name aadith-strapi-codedeploy-app \
-            --deployment-group-name aadith-strapi-ecs-dg \
+            --application-name aditya-strapi-codedeploy-app \
+            --deployment-group-name aditya-strapi-ecs-dg \
             --query 'deployments[0]' \
             --output text \
             --region $AWS_REGION)

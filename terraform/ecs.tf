@@ -19,7 +19,8 @@ resource "aws_ecs_task_definition" "strapi" {
   network_mode             = "awsvpc"
   cpu                      = 512
   memory                   = 1024
-  execution_role_arn       = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/ecsTaskExecutionRole"
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  task_role_arn            = aws_iam_role.ecs_task_role.arn
 
   container_definitions = jsonencode([
     {
@@ -89,7 +90,7 @@ resource "aws_ecs_service" "strapi" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.strapi_tg.arn
+    target_group_arn = aws_lb_target_group.blue_tg.arn
     container_name   = "strapi-aditya"
     container_port   = 1337
   }
